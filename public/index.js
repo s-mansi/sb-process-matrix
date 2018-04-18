@@ -26,7 +26,7 @@ class IndexController {
 IndexController.$inject = ['sbDeliverables'];
 
 angular
-    .module('theWholeApp', [])
+    .module('theWholeApp', ['ngMaterial'])
     .factory('sbDeliverables', DeliverablesService)
     .component('sbProcessMatrix', processMatrixComponent)
     .controller('IndexController', IndexController);
