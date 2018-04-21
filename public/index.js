@@ -21,7 +21,19 @@ class IndexController {
     // init call
     this.sbDeliverables
         .fetchAll()
-        .then( deliverables => this.deliverables = deliverables);
+      .then(deliverables => {
+        this.deliverables = this.indexedByStep(deliverables);
+      });
+  }
+
+  indexedByStep(rawData) {
+    return rawData.map(deliverable => {
+      deliverable.groupedByStep = deliverable.activities.reduce((byStep, activity) => {
+        (byStep[activity.step]) ? byStep[activity.step].push(activity) : byStep[activity.step] = [activity];
+        return byStep;
+      }, {});
+      return deliverable;
+    });
   }
 }
 IndexController.$inject = ['sbDeliverables'];
