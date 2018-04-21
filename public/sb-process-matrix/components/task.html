@@ -1,0 +1,23 @@
+<div class="task">
+	<md-card>
+		<md-card-content layout="row" layout-align="space-between" ng-style="$ctrl.getStyle($ctrl.task)">
+			<div class="task-content">
+				<div class="task-progress">
+					<p> Progress: {{$ctrl.task.progress}}% </p>
+					<md-progress-linear md-mode="determinate" value="{{$ctrl.task.progress}}"></md-progress-linear>
+				</div>
+				<div class="task-name">
+					<p>{{$ctrl.task.name}}</p>
+				</div>
+				<div class="task-action">
+					<md-input-container>
+						<md-select ng-model="$ctrl.progressUpdates" placeholder="Edit task" ng-change="$ctrl.updateProgress($ctrl.task)">
+							<md-option ng-value="i.value" ng-repeat="i in $ctrl.taskActions">{{ i.label }}</md-option>
+						</md-select>
+					</md-input-container>
+					<p ng-show="$ctrl.taskError" class="red">Oops! Could not save changes. Try again.</p>
+				</div>
+			</div>
+		</md-card-content>
+	</md-card>
+</div>
