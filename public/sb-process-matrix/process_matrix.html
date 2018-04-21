@@ -8,10 +8,17 @@
   </md-card-title>
 
   <md-card-content layout="row" layout-align="space-between">
-
-    <div ng-repeat="deliverable in $ctrl.sbModel">
-       :: ->> {{deliverable.name}}
-    </div>
+    <md-list class="deliverable-list">
+      <md-list-item class="deliverable-content" ng-repeat="deliverable in $ctrl.sbModel">
+        <div class="deliverable-name">
+          {{deliverable.name}}
+        </div>
+        <div class="step" ng-repeat="step in deliverable.groupedByStep">
+          <sb-task task="task" task-actions="$ctrl.taskActions" ng-repeat="task in step">
+        </div>
+        <md-divider></md-divider>
+      </md-list-item>
+    </md-list>
 
   </md-card-content>
 
